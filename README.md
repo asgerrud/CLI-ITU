@@ -3,19 +3,21 @@
 A CLI for all things ITU related
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/CLItu.svg)](https://npmjs.org/package/CLItu)
-[![Downloads/week](https://img.shields.io/npm/dw/CLItu.svg)](https://npmjs.org/package/CLItu)
-[![License](https://img.shields.io/npm/l/CLItu.svg)](https://github.com/AsgereDreemurr/CLItu/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/cli-itu.svg)](https://npmjs.org/package/cli-itu)
+[![Downloads/week](https://img.shields.io/npm/dw/cli-itu.svg)](https://npmjs.org/package/cli-itu)
+[![License](https://img.shields.io/npm/l/cli-itu.svg)](https://github.com/AsgereDreemurr/CLI-ITU/blob/main/package.json)
 
 <!-- toc -->
-* [CLItu](#clitu)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [CLItu](#clitu)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g CLI-ITU
 $ itu COMMAND
@@ -27,17 +29,19 @@ USAGE
   $ itu COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`itu help [COMMAND]`](#itu-help-command)
-* [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
-* [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
-* [`itu lol`](#itu-lol)
-* [`itu open PLATFORM`](#itu-open-platform)
-* [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
+
+- [`itu help [COMMAND]`](#itu-help-command)
+- [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
+- [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+- [`itu lol`](#itu-lol)
+- [`itu open PLATFORM`](#itu-open-platform)
+- [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 
 ## `itu help [COMMAND]`
 
@@ -97,7 +101,7 @@ OPTIONS
   -h, --help  show CLI help
 
 DESCRIPTION
-  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same 
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
   name.
 ```
 
@@ -153,4 +157,5 @@ OPTIONS
 ```
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
+
 <!-- commandsstop -->
