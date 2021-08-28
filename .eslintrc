@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "semi": [2, "always"],
+    "quotes": ["error", "double"],
+    "object-curly-spacing": [2, "always"],
+    "eqeqeq": ["error", "always"],
+    "prefer-const": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "unicorn/prevent-abbreviations": "off",
+    "comma-dangle": "off",
+    "lines-between-class-members": ["error", "always"]
+  },
+  "env": {
+    "es6": true,
+    "shelljs": true
+  },
+  "extends": [
+    "oclif",
+    "oclif-typescript",
+    "plugin:@typescript-eslint/base",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ]
+}
