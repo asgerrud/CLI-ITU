@@ -19,25 +19,11 @@ A CLI for all things ITU related
 <!-- usage -->
 
 ```sh-session
-$ npm install -g CLItu
+$ npm install -g CLI-ITU
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-CLItu/0.0.0-development win32-x64 node-v10.16.3
-$ itu --help [COMMAND]
-USAGE
-  $ itu COMMAND
-...
-```
-
-<!-- usagestop -->
-
-```sh-session
-$ npm install -g CLItu
-$ itu COMMAND
-running command...
-$ itu (-v|--version|version)
-CLItu/0.0.0 linux-x64 node-v16.6.2
+CLI-ITU/0.0.0-development win32-x64 node-v10.16.3
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -52,6 +38,7 @@ USAGE
 
 - [`itu help [COMMAND]`](#itu-help-command)
 - [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
+- [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
 - [`itu open PLATFORM`](#itu-open-platform)
 - [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 
@@ -72,33 +59,52 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
-## `itu java FILEPATH [MAINCLASS]`
+## `itu java FILENAME [MAINCLASS]`
 
 run the specified Java program.
 
 ```
 USAGE
-  $ itu java FILEPATH [MAINCLASS]
+  $ itu java FILENAME [MAINCLASS]
 
 ARGUMENTS
-  FILEPATH   The file path of the Java file
+  FILENAME   The name of the Java file
 
   MAINCLASS  Specify the main class.
              Leave blank, if the main class has the same name as the .java file
 
 OPTIONS
-  -c, --compile      Compile before running the program
+  -d, --dir=dir      Define the directory of the java file
   -h, --help         show CLI help
   -i, --input=input  Input file to redirect
+  -n, --nocompile    Run the program without compiling the file first
   -t, --time         Measure the time to execute the program
 
 EXAMPLES
   $ itu java MyClass.java
-  $ itu java DisjointSets.java -c -t
+  $ itu java DisjointSets.java -n -t
   $ itu java MyClass.java AnotherClass -i='./input/1.in'
 ```
 
-_See code: [src/commands/java.ts](https://github.com/AsgereDreemurr/CLItu/blob/v0.0.0/src/commands/java.ts)_
+_See code: [src/commands/java.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/java.ts)_
+
+## `itu kattis ACTION PROBLEM_ID`
+
+fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same name.
+
+```
+USAGE
+  $ itu kattis ACTION PROBLEM_ID
+
+OPTIONS
+  -h, --help  show CLI help
+
+DESCRIPTION
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
+  name.
+```
+
+_See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
 
 ## `itu open PLATFORM`
 
@@ -109,7 +115,7 @@ USAGE
   $ itu open PLATFORM
 
 ARGUMENTS
-  PLATFORM  (learnit|student|timeedit|mystudyactivities|itu) [default: learnit] ITU platform to open
+  PLATFORM  (learnit|student|timeedit|mystudyactivities|itu|github) [default: learnit] ITU platform to open
 
 OPTIONS
   -h, --help  show CLI help
@@ -122,22 +128,24 @@ EXAMPLES
   $ itu open timeedit
 ```
 
-_See code: [src/commands/open.ts](https://github.com/AsgereDreemurr/CLItu/blob/v0.0.0/src/commands/open.ts)_
+_See code: [src/commands/open.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/open.ts)_
 
-## `itu test [FILE]`
+## `itu test CLASSNAME [DIRECTORY]`
 
 test your Java program against a series of sample data files
 
 ```
 USAGE
-  $ itu test [FILE]
+  $ itu test CLASSNAME [DIRECTORY]
+
+ARGUMENTS
+  CLASSNAME
+  DIRECTORY  The directory containing the input (.in) and answer (.ans) files
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLItu/blob/v0.0.0/src/commands/test.ts)_
+_See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
 
 <!-- commandsstop -->
