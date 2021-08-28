@@ -69,7 +69,7 @@
     "tslib": "^1.14.1"
   },
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "config": {
     "commitizen": {

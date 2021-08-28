@@ -8,39 +8,36 @@ A CLI for all things ITU related
 [![License](https://img.shields.io/npm/l/CLItu.svg)](https://github.com/AsgereDreemurr/CLItu/blob/master/package.json)
 
 <!-- toc -->
-
-- [CLItu](#clitu)
-- [Usage](#usage)
-- [Commands](#commands)
+* [CLItu](#clitu)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g CLI-ITU
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-CLI-ITU/0.0.0-development win32-x64 node-v10.16.3
+CLI-ITU/0.0.0-development linux-x64 node-v10.19.0
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-
-- [`itu help [COMMAND]`](#itu-help-command)
-- [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
-- [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
-- [`itu open PLATFORM`](#itu-open-platform)
-- [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
+* [`itu help [COMMAND]`](#itu-help-command)
+* [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
+* [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+* [`itu lol`](#itu-lol)
+* [`itu open PLATFORM`](#itu-open-platform)
+* [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 
 ## `itu help [COMMAND]`
 
@@ -100,11 +97,20 @@ OPTIONS
   -h, --help  show CLI help
 
 DESCRIPTION
-  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same 
   name.
 ```
 
 _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
+
+## `itu lol`
+
+```
+USAGE
+  $ itu lol
+```
+
+_See code: [src/commands/lol.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/lol.ts)_
 
 ## `itu open PLATFORM`
 
@@ -147,5 +153,4 @@ OPTIONS
 ```
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
-
 <!-- commandsstop -->
