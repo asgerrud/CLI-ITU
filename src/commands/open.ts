@@ -15,6 +15,7 @@ export default class Open extends Command {
     mystudyactivities: "https://minestudieaktiviteter.itu.dk/",
     itu: "https://itu.dk",
     github: "https://github.itu.dk/login",
+    kattis: "https://itu.kattis.com/",
   };
 
   static flags = {
@@ -34,6 +35,7 @@ export default class Open extends Command {
         "mystudyactivities",
         "itu",
         "github",
+        "kattis",
       ],
     },
   ];
