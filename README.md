@@ -8,40 +8,53 @@ A CLI for all things ITU related
 [![License](https://img.shields.io/npm/l/cli-itu.svg)](https://github.com/AsgereDreemurr/CLI-ITU/blob/main/package.json)
 
 <!-- toc -->
-
-- [CLItu](#clitu)
-- [Usage](#usage)
-- [Commands](#commands)
+* [CLItu](#clitu)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
-$ npm install -g CLI-ITU
+$ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-CLI-ITU/0.0.0-development linux-x64 node-v10.19.0
+cli-itu/0.0.0-development win32-x64 node-v10.16.3
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`itu feedback [FILE]`](#itu-feedback-file)
+* [`itu help [COMMAND]`](#itu-help-command)
+* [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
+* [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+* [`itu lol`](#itu-lol)
+* [`itu open PLATFORM`](#itu-open-platform)
+* [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 
-- [`itu help [COMMAND]`](#itu-help-command)
-- [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
-- [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
-- [`itu lol`](#itu-lol)
-- [`itu open PLATFORM`](#itu-open-platform)
-- [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
+## `itu feedback [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ itu feedback [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/feedback.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/feedback.ts)_
 
 ## `itu help [COMMAND]`
 
@@ -101,7 +114,7 @@ OPTIONS
   -h, --help  show CLI help
 
 DESCRIPTION
-  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same 
   name.
 ```
 
@@ -125,7 +138,7 @@ USAGE
   $ itu open PLATFORM
 
 ARGUMENTS
-  PLATFORM  (learnit|student|timeedit|mystudyactivities|itu|github) [default: learnit] ITU platform to open
+  PLATFORM  (learnit|student|timeedit|mystudyactivities|itu|github|kattis) [default: learnit] ITU platform to open
 
 OPTIONS
   -h, --help  show CLI help
@@ -157,5 +170,4 @@ OPTIONS
 ```
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
-
 <!-- commandsstop -->
