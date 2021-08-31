@@ -1,4 +1,4 @@
-# CLItu
+# CLI-ITU
 
 A CLI for all things ITU related
 
@@ -8,7 +8,7 @@ A CLI for all things ITU related
 [![License](https://img.shields.io/npm/l/cli-itu.svg)](https://github.com/AsgereDreemurr/CLI-ITU/blob/main/package.json)
 
 <!-- toc -->
-* [CLItu](#clitu)
+* [CLI-ITU](#cli-itu)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
@@ -114,7 +114,7 @@ OPTIONS
   -h, --help  show CLI help
 
 DESCRIPTION
-  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same 
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
   name.
 ```
 
