@@ -186,10 +186,10 @@ ARGUMENTS
   ROOMNAME
       The following arguments are accepted: 
       Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) 
-        Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
-        Labs: (AIR|BUILD|ETHOS|IXD) 
-        Rooms: (2A08|2A12|...|5A64) 
-        Wings: (A|B|C|D)
+      Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
+      Labs: (AIR|BUILD|ETHOS|IXD) 
+      Rooms: (2A08|2A12|...|5A64) 
+      Wings: (A|B|C|D)
 
 OPTIONS
   -h, --help  show CLI help
