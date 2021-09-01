@@ -11,6 +11,10 @@ function green(msg: string) {
   console.log(chalk.green(msg));
 }
 
+function timeInSeconds(t0: number, t1: number) {
+  return (t1 - t0) / 1_000_000_000;
+}
+
 export default class Test extends Command {
   static description =
     "test your Java program against a series of sample data files";
@@ -68,7 +72,7 @@ export default class Test extends Command {
           `java -cp ${dir} ${args.classname} < ${filename}.in | diff - ${filename}.ans >/dev/null`
         ).stdout;
         const t1 = process.hrtime()[1];
-        const seconds = ((t1 - t0) * 0.000_000_01).toFixed(2);
+        const seconds = timeInSeconds(t0, t1).toFixed(2);
 
         if (diff === "") {
           green(`✔ PASSED [${filename}] [${seconds}s]`);
