@@ -39,21 +39,22 @@ USAGE
 * [`itu lol`](#itu-lol)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
-* [`itu where [FILE]`](#itu-where-file)
+* [`itu where [ROOMNAME]`](#itu-where-roomname)
 
 ## `itu feedback`
 
-Report bugs or suggest an issue to improve the CLI.
+Report a bug or suggest an issue to improve the CLI. 
 
 ```
 USAGE
   $ itu feedback
 
 OPTIONS
-  -h, --help  show CLI help
+  -h, --help      show CLI help
+  -n, --noprompt  Turns off the issue prompt. Instead opens the issues page for the CLI
 
 DESCRIPTION
-  Requires Github CLI installed to create the issue
+  Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.
 ```
 
 _See code: [src/commands/feedback.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/feedback.ts)_
@@ -116,7 +117,7 @@ OPTIONS
   -h, --help  show CLI help
 
 DESCRIPTION
-  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same
+  fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same 
   name.
 ```
 
@@ -173,18 +174,32 @@ OPTIONS
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
 
-## `itu where [FILE]`
+## `itu where [ROOMNAME]`
 
-describe the command here
+Find the location of auditoriums, labs, departments and class rooms - on the first try
 
 ```
 USAGE
-  $ itu where [FILE]
+  $ itu where [ROOMNAME]
+
+ARGUMENTS
+  ROOMNAME
+      The following arguments are accepted: 
+      Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) 
+        Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
+        Labs: (AIR|BUILD|ETHOS|IXD) 
+        Rooms: (2A08|2A12|...|5A64) 
+        Wings: (A|B|C|D)
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
+
+DESCRIPTION
+  Tells which side the room is facing
+
+ALIASES
+  $ itu w
+  $ itu whereis
 ```
 
 _See code: [src/commands/where.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/where.ts)_
