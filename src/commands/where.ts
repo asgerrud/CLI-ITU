@@ -135,7 +135,7 @@ export default class Where extends Command {
     {
       name: "roomName",
       description:
-        "The following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \nDepartments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \nLabs: (AIR|BUILD|ETHOS|IXD) \nRooms: (2A08|2A12|...|5A64) \nWings: (A|B|C|D)",
+        "The following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \nDepartments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \nLabs: (AIR|BUILD|ETHOS|IXD) \nRooms: (2A08|2A12|...|5A64) \nWings: (B|C|D|E)",
     },
   ];
 
