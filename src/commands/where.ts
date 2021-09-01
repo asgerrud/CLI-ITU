@@ -12,8 +12,8 @@ enum directions {
   CWing = "side: parking lot\nend: KUA",
   EWing = "side: canal\nend: DR side",
   DWing = "side: parking lot\nend: DR",
-  east =  "side: parking lot",
-  west =  "side: canal",
+  east = "side: parking lot",
+  west = "side: canal",
 }
 
 const rooms: { [key: string]: string } = {
@@ -135,7 +135,7 @@ export default class Where extends Command {
     {
       name: "roomName",
       description:
-        "The following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \n Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \n Labs: (AIR|BUILD|ETHOS|IXD) \n Rooms: (2A08|2A12|...|5A64) \n Wings: (A|B|C|D)",
+        "The following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \n Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \n Labs: (AIR|BUILD|ETHOS|IXD) \n Rooms: (2A08|2A12|...|5A64) \n Wings: (B|C|D|E)",
     },
   ];
 
