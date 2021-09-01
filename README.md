@@ -32,26 +32,28 @@ USAGE
 # Commands
 
 <!-- commands -->
-* [`itu feedback [FILE]`](#itu-feedback-file)
+* [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
 * [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
 * [`itu lol`](#itu-lol)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
+* [`itu where [FILE]`](#itu-where-file)
 
-## `itu feedback [FILE]`
+## `itu feedback`
 
-describe the command here
+Report bugs or suggest an issue to improve the CLI.
 
 ```
 USAGE
-  $ itu feedback [FILE]
+  $ itu feedback
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
+
+DESCRIPTION
+  Requires Github CLI installed to create the issue
 ```
 
 _See code: [src/commands/feedback.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/feedback.ts)_
@@ -170,4 +172,20 @@ OPTIONS
 ```
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
+
+## `itu where [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ itu where [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/where.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/where.ts)_
 <!-- commandsstop -->
