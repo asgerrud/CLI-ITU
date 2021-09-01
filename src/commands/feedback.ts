@@ -3,16 +3,32 @@ import chalk = require("chalk");
 import inquirer = require("inquirer");
 import * as shell from "shelljs";
 import ghCli = require("../utils/gh");
+import cli from "cli-ux";
+
+const issuePage = "https://github.com/AsgereDreemurr/CLI-ITU/issues";
 
 export default class Feedback extends Command {
   static description =
-    "Report bugs or suggest an issue to improve the CLI. \n Requires Github CLI installed to create the issue";
+    "Report a bug or suggest an issue to improve the CLI. \n Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.";
 
   static flags = {
     help: flags.help({ char: "h" }),
+    noprompt: flags.boolean({
+      char: "n",
+      description:
+        "Turns off the issue prompt. Instead opens the issues page for the CLI",
+    }),
   };
 
   async run(): Promise<any> {
+    const { flags } = this.parse(Feedback);
+
+    if (flags.noprompt) {
+      console.log("Opening " + issuePage);
+      cli.open(issuePage);
+      return;
+    }
+
     if (!ghCli.isInstalled()) return;
 
     if (!ghCli.isAuthenticated()) return;
@@ -41,7 +57,7 @@ export default class Feedback extends Command {
       { name: "description", message: "Enter description:", type: "input" },
       { name: "confirm", message: "Submit issue?", type: "confirm" },
     ])
-    .then(answers => {
+    .then(function (answers) {
       const { type, title, description, confirm } = answers;
 
       if (confirm) {
@@ -57,7 +73,7 @@ export default class Feedback extends Command {
         console.log("Thanks for the feedback!");
       }
     })
-    .catch(error => {
+    .catch(function (error) {
       if (error.isTtyError) {
         console.error(
           "The prompt couldn't be rendered in the current environment"
