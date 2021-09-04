@@ -21,7 +21,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development win32-x64 node-v10.16.3
+cli-itu/0.0.0-development win32-x64 node-v14.17.6
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -32,14 +32,31 @@ USAGE
 # Commands
 
 <!-- commands -->
+* [`itu canteen [ACTION]`](#itu-canteen-action)
 * [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
 * [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
-* [`itu lol`](#itu-lol)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 * [`itu where [ROOMNAME]`](#itu-where-roomname)
+
+## `itu canteen [ACTION]`
+
+Get the menu and opening hours of ITU's canteen
+
+```
+USAGE
+  $ itu canteen [ACTION]
+
+OPTIONS
+  -h, --help  show CLI help
+
+ALIASES
+  $ itu lunch
+```
+
+_See code: [src/commands/canteen.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/canteen.ts)_
 
 ## `itu feedback`
 
@@ -123,15 +140,6 @@ DESCRIPTION
 
 _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
 
-## `itu lol`
-
-```
-USAGE
-  $ itu lol
-```
-
-_See code: [src/commands/lol.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/lol.ts)_
-
 ## `itu open PLATFORM`
 
 open an ITU platform
@@ -184,11 +192,11 @@ USAGE
 
 ARGUMENTS
   ROOMNAME
-      The following arguments are accepted:
-      Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4)
-      Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen)
-      Labs: (AIR|BUILD|ETHOS|IXD)
-      Rooms: (2A08|2A12|...|5A64)
+      The following arguments are accepted: 
+      Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) 
+      Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
+      Labs: (AIR|BUILD|ETHOS|IXD) 
+      Rooms: (2A08|2A12|...|5A64) 
       Wings: (B|C|D|E)
 
 OPTIONS
