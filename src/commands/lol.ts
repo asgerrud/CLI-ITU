@@ -4,6 +4,8 @@ import chalk = require("chalk");
 export class LolCommand extends Command {
   static description = "";
 
+  static hidden = true;
+
   async run(): Promise<void> {
     console.log(
       chalk.green(`
