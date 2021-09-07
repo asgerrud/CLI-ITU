@@ -26,17 +26,18 @@ const openMenuPDF = () => {
       .load(html)("aside[aria-label='This weeks menu'] > a")
       .attr("href");
     const url = baseURL + menuFilePDF;
-    console.log("Opening " + url);
+    process.stdout.write("Opening ");
+    cli.url("menu", url);
     cli.open(url);
   });
 };
 
 const printOpeningHours = () => {
-  console.log(chalk.cyan("---------------------"));
+  console.log(chalk.cyan("----------------------"));
   console.log(chalk.cyan("Canteen opening hours"));
-  console.log(chalk.cyan("Monday: 07:45 - 18:00"));
-  console.log(chalk.cyan("Friday: 07:45 - 16:00"));
-  console.log(chalk.cyan("---------------------"));
+  console.log(chalk.cyan("Mon-Fri: 07:45 - 15:00"));
+  console.log(chalk.cyan("Lunch:   11:15 - 14:00"));
+  console.log(chalk.cyan("----------------------"));
 };
 
 export default class Canteen extends Command {
@@ -48,7 +49,9 @@ export default class Canteen extends Command {
     help: flags.help({ char: "h" }),
   };
 
-  static args = [{ name: "action", options: ["menu", "hours"] }];
+  static args = [
+    { name: "action", options: ["menu", "hours"], default: "menu" },
+  ];
 
   async run(): Promise<void> {
     const { args } = this.parse(Canteen);
