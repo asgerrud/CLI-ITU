@@ -3,17 +3,13 @@ import * as shell from "shelljs";
 import path = require("path");
 import fs = require("fs");
 import chalk = require("chalk");
+import { nanoToSeconds } from "../utils/timing";
 
 function red(msg: string) {
   console.log(chalk.red(msg));
 }
 function green(msg: string) {
   console.log(chalk.green(msg));
-}
-
-function timeInSeconds(t0: bigint, t1: bigint) {
-  const nanoSecondsPerSecond = 1_000_000_000;
-  return Number(t1 - t0) / nanoSecondsPerSecond;
 }
 
 export default class Test extends Command {
@@ -74,7 +70,7 @@ export default class Test extends Command {
           { async: false }
         ).stdout;
         const t1 = process.hrtime.bigint();
-        const seconds = timeInSeconds(t0, t1).toFixed(2);
+        const seconds = nanoToSeconds(t0, t1).toFixed(2);
 
         if (diff === "") {
           green(`✔ PASSED [${filename}] [${seconds}s]`);
