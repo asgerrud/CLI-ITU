@@ -1,6 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import * as shell from "shelljs";
 import path = require("path");
+import { nanoToSeconds } from "../utils/timing";
 
 export default class java extends Command {
   static description = "run the specified Java program.";
@@ -61,11 +62,11 @@ export default class java extends Command {
     const command = `java -cp ${directory} ${mainClass} ${input}`;
 
     if (flags.time) {
-      const t0 = process.hrtime()[1];
-      shell.exec(command, { async: true });
-      const t1 = process.hrtime()[1];
-      const miliseconds = (t1 - t0) * 0.000_001;
-      this.log("⏳ time: " + miliseconds.toFixed(1) + "ms");
+      const t0 = process.hrtime.bigint();
+      shell.exec(command, { async: false });
+      const t1 = process.hrtime.bigint();
+      const seconds = nanoToSeconds(t0, t1).toFixed(2);
+      this.log("⏳ time: " + seconds + "s");
     } else {
       shell.exec(command, { async: true });
     }
