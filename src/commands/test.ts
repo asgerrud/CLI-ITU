@@ -3,16 +3,13 @@ import * as shell from "shelljs";
 import path = require("path");
 import fs = require("fs");
 import chalk = require("chalk");
+import timing = require("../utils/timing");
 
 function red(msg: string) {
   console.log(chalk.red(msg));
 }
 function green(msg: string) {
   console.log(chalk.green(msg));
-}
-
-function timeInSeconds(t0: number, t1: number) {
-  return (t1 - t0) / 1_000_000_000;
 }
 
 export default class Test extends Command {
@@ -67,18 +64,19 @@ export default class Test extends Command {
           continue;
         }
 
-        const t0 = process.hrtime()[1];
+        const t0 = process.hrtime.bigint();
         const diff = shell.exec(
-          `java -cp ${dir} ${args.classname} < ${filename}.in | diff - ${filename}.ans >/dev/null`
+          `java -cp ${args.classname} < ${filename}.in | diff - ${filename}.ans >/dev/null`,
+          { async: false }
         ).stdout;
-        const t1 = process.hrtime()[1];
-        const seconds = timeInSeconds(t0, t1).toFixed(2);
+        const t1 = process.hrtime.bigint();
+        const seconds = timing.nanoToSeconds(t0, t1).toFixed(2);
 
         if (diff === "") {
           green(`✔ PASSED [${filename}] [${seconds}s]`);
-          failed++;
         } else {
           red(`✖ FAILED [${filename}] [${seconds}s]`);
+          failed++;
         }
       }
 
