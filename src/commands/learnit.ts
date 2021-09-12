@@ -65,7 +65,7 @@ export default class Learnit extends Command {
 
           for (let i = 1; i <= numberOfCourses; i++) {
             const id = courses["id" + i];
-            const name = courses["course" + i];
+            const name = courses["course" + i].toLowerCase();
             newConfigFile[name] = id;
           }
           fs.writeFileSync(configFilePath, JSON.stringify(newConfigFile));
