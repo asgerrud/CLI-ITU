@@ -16,9 +16,19 @@ export default class Learnit extends Command {
 
   static description = "Open course pages directly from your terminal\n";
 
+  static examples = [
+    "$ itu learnit security",
+    "$ itu learnit 'Applied Algorithms' ",
+    "$ itu l discrete",
+    "",
+    "$ itu learnit -init",
+    "$ itu learnit -reset",
+  ];
+
   static flags = {
     help: flags.help({ char: "h" }),
     reset: flags.boolean({ char: "r" }),
+    init: flags.boolean({ char: "i" }),
   };
 
   static args = [
@@ -53,13 +63,12 @@ export default class Learnit extends Command {
       return;
     }
 
-    if (hasConfigFile() && !flags.reset) {
-      const confirmOverwrite = await cli.confirm(
-        "A config file already exists. Do you wish to replace the old one? (y/n)"
-      );
-
-      if (!confirmOverwrite) {
-        return;
+    if (flags.init || flags.reset) {
+      if (hasConfigFile() && flags.init) {
+        const confirmOverwrite = await cli.confirm(
+          "A config file already exists. Do you wish to replace the old one? (y/n)"
+        );
+        if (!confirmOverwrite) return;
       }
 
       const numberOfCourses = await cli.prompt(
@@ -72,6 +81,7 @@ export default class Learnit extends Command {
       }
 
       const questions = createPrompts(numberOfCourses);
+
       await inquirer.prompt(questions).then(function (courses) {
         try {
           const newConfigFile: { [key: string]: string } = {};
