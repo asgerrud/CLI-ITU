@@ -5,6 +5,7 @@ import cli from "cli-ux";
 import inquirer = require("inquirer");
 import fs = require("fs");
 import path = require("path");
+const { search } = require("fast-fuzzy");
 
 // eslint-disable-next-line no-path-concat
 const configFilePath = path.join(__dirname, "..", "..", "learnit-config.json");
@@ -20,14 +21,22 @@ export default class Learnit extends Command {
     reset: flags.boolean({ char: "r" }),
   };
 
-  static args = [{ name: "course", required: false }];
+  static args = [
+    {
+      name: "course",
+      required: false,
+      description:
+        "The name of the course to open in LearnIT. The command uses fuzzy-search to find the course, meaning it is not necessary to enter the name letter for letter",
+    },
+  ];
 
   async run(): Promise<any> {
     const { args, flags } = this.parse(Learnit);
 
     if (args.course) {
       const configObject = JSON.parse(fs.readFileSync(configFilePath, "utf-8"));
-      const courseID = configObject[args.course];
+      const bestSearchMatch = search(args.course, Object.keys(configObject))[0];
+      const courseID = configObject[bestSearchMatch];
       if (courseID === undefined) {
         console.error(
           chalk.red(
@@ -35,6 +44,10 @@ export default class Learnit extends Command {
           )
         );
       } else {
+        console.log(
+          "Opening course page for: " +
+            chalk.cyan(bestSearchMatch.toUpperCase())
+        );
         openCoursePage(courseID);
       }
       return;
