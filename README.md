@@ -37,9 +37,10 @@ USAGE
 * [`itu help [COMMAND]`](#itu-help-command)
 * [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+* [`itu learnit [COURSE]`](#itu-learnit-course)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
-* [`itu where [ROOMNAME]`](#itu-where-roomname)
+* [`itu where ROOMNAME`](#itu-where-roomname)
 
 ## `itu canteen [ACTION]`
 
@@ -140,6 +141,37 @@ DESCRIPTION
 
 _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
 
+## `itu learnit [COURSE]`
+
+Open course pages directly from your terminal
+
+```
+USAGE
+  $ itu learnit [COURSE]
+
+ARGUMENTS
+  COURSE  The name of the course to open in LearnIT. The command uses fuzzy-search to find the course, meaning it is not
+          necessary to enter the name letter for letter
+
+OPTIONS
+  -h, --help   show CLI help
+  -i, --init
+  -r, --reset
+
+ALIASES
+  $ itu l
+
+EXAMPLES
+  $ itu learnit security
+  $ itu learnit 'Applied Algorithms' 
+  $ itu l discrete
+
+  $ itu learnit -init
+  $ itu learnit -reset
+```
+
+_See code: [src/commands/learnit.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/learnit.ts)_
+
 ## `itu open PLATFORM`
 
 open an ITU platform
@@ -182,13 +214,13 @@ OPTIONS
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
 
-## `itu where [ROOMNAME]`
+## `itu where ROOMNAME`
 
 Find the location of auditoriums, labs, departments and class rooms - on the first try
 
 ```
 USAGE
-  $ itu where [ROOMNAME]
+  $ itu where ROOMNAME
 
 ARGUMENTS
   ROOMNAME
