@@ -9,14 +9,14 @@ const issuePage = "https://github.com/AsgereDreemurr/CLI-ITU/issues";
 
 export default class Feedback extends Command {
   static description =
-    "Report a bug or suggest an issue to improve the CLI. \n Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.";
+    "report a bug or suggest an issue to improve the CLI. \n Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.";
 
   static flags = {
     help: flags.help({ char: "h" }),
     noprompt: flags.boolean({
       char: "n",
       description:
-        "Turns off the issue prompt. Instead opens the issues page for the CLI",
+        "turn off the issue prompt and open the issues page for the CLI instead",
     }),
   };
 
