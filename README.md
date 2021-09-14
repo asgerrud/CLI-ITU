@@ -21,7 +21,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development win32-x64 node-v14.17.6
+cli-itu/0.0.0-development linux-x64 node-v16.8.0
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -33,6 +33,7 @@ USAGE
 
 <!-- commands -->
 * [`itu canteen [ACTION]`](#itu-canteen-action)
+* [`itu commands`](#itu-commands)
 * [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
 * [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
@@ -40,6 +41,7 @@ USAGE
 * [`itu learnit [COURSE]`](#itu-learnit-course)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
+* [`itu update [CHANNEL]`](#itu-update-channel)
 * [`itu where ROOMNAME`](#itu-where-roomname)
 
 ## `itu canteen [ACTION]`
@@ -58,6 +60,30 @@ ALIASES
 ```
 
 _See code: [src/commands/canteen.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/canteen.ts)_
+
+## `itu commands`
+
+list all the commands
+
+```
+USAGE
+  $ itu commands
+
+OPTIONS
+  -h, --help              show CLI help
+  -j, --json              display unfiltered api data in json format
+  -x, --extended          show extra columns
+  --columns=columns       only show provided columns (comma-separated)
+  --csv                   output is csv format [alias: --output=csv]
+  --filter=filter         filter property by partial string matching, ex: name=foo
+  --hidden                show hidden commands
+  --no-header             hide table header from output
+  --no-truncate           do not truncate output to fit screen
+  --output=csv|json|yaml  output in a more machine friendly format
+  --sort=sort             property to sort by (prepend '-' for descending)
+```
+
+_See code: [@oclif/plugin-commands](https://github.com/oclif/plugin-commands/blob/v1.3.0/src/commands/commands.ts)_
 
 ## `itu feedback`
 
@@ -143,7 +169,7 @@ _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/bl
 
 ## `itu learnit [COURSE]`
 
-Open course pages directly from your terminal
+open course pages directly from your terminal
 
 ```
 USAGE
@@ -213,6 +239,20 @@ OPTIONS
 ```
 
 _See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
+
+## `itu update [CHANNEL]`
+
+update the itu CLI
+
+```
+USAGE
+  $ itu update [CHANNEL]
+
+OPTIONS
+  --from-local  interactively choose an already installed version
+```
+
+_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v1.5.0/src/commands/update.ts)_
 
 ## `itu where ROOMNAME`
 
