@@ -43,7 +43,7 @@ const printOpeningHours = () => {
 export default class Canteen extends Command {
   static aliases = ["lunch"];
 
-  static description = "Get the menu and opening hours of ITU's canteen";
+  static description = "get the menu and opening hours of ITU's canteen";
 
   static flags = {
     help: flags.help({ char: "h" }),
