@@ -42,7 +42,7 @@ USAGE
 
 ## `itu canteen [ACTION]`
 
-Get the menu and opening hours of ITU's canteen
+get the menu and opening hours of ITU's canteen
 
 ```
 USAGE
@@ -59,7 +59,7 @@ _See code: [src/commands/canteen.ts](https://github.com/AsgereDreemurr/CLI-ITU/b
 
 ## `itu feedback`
 
-Report a bug or suggest an issue to improve the CLI. 
+report a bug or suggest an issue to improve the CLI. 
 
 ```
 USAGE
@@ -67,7 +67,7 @@ USAGE
 
 OPTIONS
   -h, --help      show CLI help
-  -n, --noprompt  Turns off the issue prompt. Instead opens the issues page for the CLI
+  -n, --noprompt  turn off the issue prompt and open the issues page for the CLI instead
 
 DESCRIPTION
   Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.
@@ -112,7 +112,7 @@ _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/bl
 
 ## `itu learnit [COURSE]`
 
-Open course pages on LearnIT from the terminal
+open course pages on LearnIT from the terminal
 
 ```
 USAGE
@@ -166,7 +166,7 @@ _See code: [src/commands/open.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob
 
 ## `itu where ROOMNAME`
 
-Find the location of auditoriums, labs, departments and class rooms - on the first try
+find the location of auditoriums, labs, departments and class rooms - on the first try
 
 ```
 USAGE
@@ -174,7 +174,7 @@ USAGE
 
 ARGUMENTS
   ROOMNAME
-      The following arguments are accepted: 
+      the following arguments are accepted: 
       Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) 
       Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
       Labs: (AIR|BUILD|ETHOS|IXD) 

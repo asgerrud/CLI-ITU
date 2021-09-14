@@ -123,7 +123,7 @@ const rooms: { [key: string]: string } = {
 export default class Where extends Command {
   static aliases = ["w", "whereis"];
 
-  static description = `Find the location of auditoriums, labs, departments and class rooms - on the first try
+  static description = `find the location of auditoriums, labs, departments and class rooms - on the first try
     Tells which side the room is facing
     `;
 
@@ -136,7 +136,7 @@ export default class Where extends Command {
       name: "roomName",
       required: true,
       description:
-        "The following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \nDepartments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \nLabs: (AIR|BUILD|ETHOS|IXD) \nRooms: (2A08|2A12|...|5A64) \nWings: (B|C|D|E)",
+        "the following arguments are accepted: \nAuditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) \nDepartments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) \nLabs: (AIR|BUILD|ETHOS|IXD) \nRooms: (2A08|2A12|...|5A64) \nWings: (B|C|D|E)",
     },
   ];
 
