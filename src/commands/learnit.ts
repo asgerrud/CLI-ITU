@@ -14,7 +14,7 @@ const hasConfigFile = () => fs.existsSync(configFilePath);
 export default class Learnit extends Command {
   static aliases = ["l"];
 
-  static description = "Open course pages directly from your terminal\n";
+  static description = "Open course pages on LearnIT from the terminal";
 
   static examples = [
     "$ itu learnit security",
@@ -27,8 +27,8 @@ export default class Learnit extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
-    reset: flags.boolean({ char: "r" }),
-    init: flags.boolean({ char: "i" }),
+    reset: flags.boolean({ char: "r", description: "reset the config file" }),
+    init: flags.boolean({ char: "i", description: "initialize the config file" }),
   };
 
   static args = [
@@ -36,7 +36,7 @@ export default class Learnit extends Command {
       name: "course",
       required: false,
       description:
-        "The name of the course to open in LearnIT. The command uses fuzzy-search to find the course, meaning it is not necessary to enter the name letter for letter",
+        "The name of the course to open in LearnIT. Supports fuzzy searching",
     },
   ];
 

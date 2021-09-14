@@ -21,7 +21,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development win32-x64 node-v14.17.6
+cli-itu/0.0.0-development linux-x64 node-v16.8.0
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -35,11 +35,9 @@ USAGE
 * [`itu canteen [ACTION]`](#itu-canteen-action)
 * [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
-* [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
 * [`itu learnit [COURSE]`](#itu-learnit-course)
 * [`itu open PLATFORM`](#itu-open-platform)
-* [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
 * [`itu where ROOMNAME`](#itu-where-roomname)
 
 ## `itu canteen [ACTION]`
@@ -94,35 +92,6 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
-## `itu java FILENAME [MAINCLASS]`
-
-run the specified Java program.
-
-```
-USAGE
-  $ itu java FILENAME [MAINCLASS]
-
-ARGUMENTS
-  FILENAME   The name of the Java file
-
-  MAINCLASS  Specify the main class.
-             Leave blank, if the main class has the same name as the .java file
-
-OPTIONS
-  -d, --dir=dir      Define the directory of the java file
-  -h, --help         show CLI help
-  -i, --input=input  Input file to redirect
-  -n, --nocompile    Run the program without compiling the file first
-  -t, --time         Measure the time to execute the program
-
-EXAMPLES
-  $ itu java MyClass.java
-  $ itu java DisjointSets.java -n -t
-  $ itu java MyClass.java AnotherClass -i='./input/1.in'
-```
-
-_See code: [src/commands/java.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/java.ts)_
-
 ## `itu kattis ACTION PROBLEM_ID`
 
 fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same name.
@@ -143,20 +112,19 @@ _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/bl
 
 ## `itu learnit [COURSE]`
 
-Open course pages directly from your terminal
+Open course pages on LearnIT from the terminal
 
 ```
 USAGE
   $ itu learnit [COURSE]
 
 ARGUMENTS
-  COURSE  The name of the course to open in LearnIT. The command uses fuzzy-search to find the course, meaning it is not
-          necessary to enter the name letter for letter
+  COURSE  The name of the course to open in LearnIT. Supports fuzzy searching
 
 OPTIONS
   -h, --help   show CLI help
-  -i, --init
-  -r, --reset
+  -i, --init   initialize the config file
+  -r, --reset  reset the config file
 
 ALIASES
   $ itu l
@@ -195,24 +163,6 @@ EXAMPLES
 ```
 
 _See code: [src/commands/open.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/open.ts)_
-
-## `itu test CLASSNAME [DIRECTORY]`
-
-test your Java program against a series of sample data files
-
-```
-USAGE
-  $ itu test CLASSNAME [DIRECTORY]
-
-ARGUMENTS
-  CLASSNAME
-  DIRECTORY  The directory containing the input (.in) and answer (.ans) files
-
-OPTIONS
-  -h, --help  show CLI help
-```
-
-_See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
 
 ## `itu where ROOMNAME`
 
