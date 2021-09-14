@@ -14,7 +14,7 @@ const hasConfigFile = () => fs.existsSync(configFilePath);
 export default class Learnit extends Command {
   static aliases = ["l"];
 
-  static description = "Open course pages directly from your terminal\n";
+  static description = "open course pages directly from your terminal\n";
 
   static examples = [
     "$ itu learnit security",
