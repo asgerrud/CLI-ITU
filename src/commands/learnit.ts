@@ -14,7 +14,23 @@ const hasConfigFile = () => fs.existsSync(configFilePath);
 export default class Learnit extends Command {
   static aliases = ["l"];
 
-  static description = "Open course pages directly from your terminal\n";
+  static description = `Open a course's LearnIT page directly from your terminal.
+
+  CONFIG
+  For a course page to be openable, it must first be added to the config file.
+
+  to generate the config file, use
+  $ itu learnit --init
+
+  to add a single course, use
+  $ itu learnit --add
+
+  to find the course id:
+  - open the LearnIT page
+  - locate the number in the end of the URL
+
+  Example: https://learnit.itu.dk/course/view.php?id=3020335
+  `;
 
   static examples = [
     "$ itu learnit security",
@@ -23,12 +39,22 @@ export default class Learnit extends Command {
     "",
     "$ itu learnit -init",
     "$ itu learnit -reset",
+    "$ itu learnit -add",
   ];
 
   static flags = {
     help: flags.help({ char: "h" }),
-    reset: flags.boolean({ char: "r" }),
-    init: flags.boolean({ char: "i" }),
+    reset: flags.boolean({ char: "r", description: "Reset the config file" }),
+    init: flags.boolean({
+      char: "i",
+      exclusive: ["reset"],
+      description: "Initialize the config file",
+    }),
+    add: flags.boolean({
+      char: "a",
+      exclusive: ["init", "reset"],
+      description: "Add a course to the config file",
+    }),
   };
 
   static args = [
@@ -44,19 +70,23 @@ export default class Learnit extends Command {
     const { args, flags } = this.parse(Learnit);
 
     if (args.course) {
-      const configObject = JSON.parse(fs.readFileSync(configFilePath, "utf-8"));
-      const bestSearchMatch = search(args.course, Object.keys(configObject))[0];
-      const courseID = configObject[bestSearchMatch];
+      if (!hasConfigFile()) {
+        return console.error(
+          chalk.red(
+            "The course config file has not been set up. Please run: itu learnit --init"
+          )
+        );
+      }
+
+      const { courseID, courseName } = getCourseMatch(args.course);
+
       if (courseID === undefined) {
         console.error(
-          chalk.red(
-            "The course provided does not exist. Please rerun the command"
-          )
+          chalk.red("No course matched the query. Please rerun the command")
         );
       } else {
         console.log(
-          "Opening course page for: " +
-            chalk.cyan(bestSearchMatch.toUpperCase())
+          "Opening course page for: " + chalk.cyan(courseName.toUpperCase())
         );
         openCoursePage(courseID);
       }
@@ -76,8 +106,9 @@ export default class Learnit extends Command {
       );
 
       if (isValidNumber(numberOfCourses) === false) {
-        console.log(chalk.red("Invalid number. Please rerun the command"));
-        return;
+        return console.log(
+          chalk.red("Invalid number. Please rerun the command")
+        );
       }
 
       const questions = createPrompts(numberOfCourses);
@@ -97,7 +128,39 @@ export default class Learnit extends Command {
         }
       });
     }
+    if (flags.add) {
+      await inquirer
+        .prompt([
+          {
+            name: "name",
+            message: "Give the course a name:",
+            type: "input",
+          },
+          {
+            name: "id",
+            message: "Enter course id:",
+            type: "number",
+          },
+        ])
+        .then(function (course) {
+          const config = getConfig();
+          const { id, name } = course;
+          config[name] = id;
+          fs.writeFileSync(configFilePath, JSON.stringify(config));
+        });
+    }
   }
+}
+
+function getCourseMatch(_course: string) {
+  const config = getConfig();
+  const courseName = search(_course, Object.keys(config))[0];
+  const courseID = config[courseName];
+  return { courseID, courseName };
+}
+
+function getConfig() {
+  return JSON.parse(fs.readFileSync(configFilePath, "utf-8"));
 }
 
 function openCoursePage(id: number) {
