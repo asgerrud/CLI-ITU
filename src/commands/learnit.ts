@@ -14,10 +14,10 @@ const hasConfigFile = () => fs.existsSync(configFilePath);
 export default class Learnit extends Command {
   static aliases = ["l"];
 
-  static description = `Open a course's LearnIT page directly from your terminal.
+  static description = `open a course's LearnIT page directly from your terminal.
 
   CONFIG
-  For a course page to be openable, it must first be added to the config file.
+  for a course page to be openable, it must first be added to the config file.
 
   to generate the config file, use
   $ itu learnit --init
@@ -44,16 +44,21 @@ export default class Learnit extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
-    reset: flags.boolean({ char: "r", description: "Reset the config file" }),
+    reset: flags.boolean({ char: "r", description: "reset the config file" }),
     init: flags.boolean({
       char: "i",
       exclusive: ["reset"],
-      description: "Initialize the config file",
+      description: "initialize the config file",
     }),
     add: flags.boolean({
       char: "a",
       exclusive: ["init", "reset"],
-      description: "Add a course to the config file",
+      description: "add a course to the config file",
+    }),
+    delete: flags.boolean({
+      char: "d",
+      exclusive: ["add"],
+      description: "remove a course from the config list",
     }),
   };
 
@@ -147,6 +152,30 @@ export default class Learnit extends Command {
           const { id, name } = course;
           config[name] = id;
           fs.writeFileSync(configFilePath, JSON.stringify(config));
+        });
+      return;
+    }
+    if (flags.delete) {
+      const config = getConfig();
+      await inquirer
+        .prompt([
+          {
+            type: "list",
+            name: "course",
+            message: "Which resource do you want to delete?",
+            choices: Object.keys(config),
+          },
+          {
+            type: "confirm",
+            name: "confirm",
+            message: "Confirm deletion?",
+          },
+        ])
+        .then(function (ans) {
+          if (ans.confirm) {
+            delete config[ans.course];
+            fs.writeFileSync(configFilePath, JSON.stringify(config));
+          }
         });
     }
   }
