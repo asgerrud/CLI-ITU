@@ -21,7 +21,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development linux-x64 node-v16.8.0
+cli-itu/0.0.0-development win32-x64 node-v14.17.6
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -37,6 +37,7 @@ USAGE
 * [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+* [`itu learnit [COURSE]`](#itu-learnit-course)
 * [`itu open PLATFORM`](#itu-open-platform)
 * [`itu update [CHANNEL]`](#itu-update-channel)
 * [`itu where ROOMNAME`](#itu-where-roomname)
@@ -134,6 +135,55 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
+
+## `itu learnit [COURSE]`
+
+open a course's LearnIT page directly from your terminal.
+
+```
+USAGE
+  $ itu learnit [COURSE]
+
+ARGUMENTS
+  COURSE  the name of the course to open in LearnIT. Supports fuzzy searching
+
+OPTIONS
+  -a, --add     add a course to the config file
+  -d, --delete  remove a course from the config file
+  -e, --edit    edit a course from the config file
+  -h, --help    show CLI help
+  -i, --init    initialize the config file
+  -r, --reset   reset the config file
+
+DESCRIPTION
+  CONFIG
+     for a course page to be openable, it must first be added to the config file.
+
+     generate config   $ itu learnit --init
+     add a course      $ itu learnit --add
+     edit a course     $ itu learnit --edit
+     remove a course   $ itu learnit --edit
+
+     to find the course id:
+     - open the LearnIT page
+     - locate the number in the end of the URL
+
+     Example: https://learnit.itu.dk/course/view.php?id=3020335 -> 3020335
+
+ALIASES
+  $ itu l
+
+EXAMPLES
+  $ itu learnit security
+  $ itu learnit 'Applied Algorithms' 
+  $ itu l discrete
+
+  $ itu learnit -init
+  $ itu learnit -reset
+  $ itu learnit -add
+```
+
+_See code: [src/commands/learnit.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/learnit.ts)_
 
 ## `itu open PLATFORM`
 

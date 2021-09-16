@@ -19,17 +19,16 @@ export default class Learnit extends Command {
   CONFIG
   for a course page to be openable, it must first be added to the config file.
 
-  to generate the config file, use
-  $ itu learnit --init
-
-  to add a single course, use
-  $ itu learnit --add
+  generate config   $ itu learnit --init
+  add a course      $ itu learnit --add
+  edit a course     $ itu learnit --edit
+  remove a course   $ itu learnit --edit
 
   to find the course id:
   - open the LearnIT page
   - locate the number in the end of the URL
 
-  Example: https://learnit.itu.dk/course/view.php?id=3020335
+  Example: https://learnit.itu.dk/course/view.php?id=3020335 -> 3020335
   `;
 
   static examples = [
@@ -58,12 +57,12 @@ export default class Learnit extends Command {
     delete: flags.boolean({
       char: "d",
       exclusive: ["add"],
-      description: "remove a course from the config list",
+      description: "remove a course from the config file",
     }),
     edit: flags.boolean({
       char: "e",
       exclusive: ["delete", "add"],
-      description: "edit a course from the config list",
+      description: "edit a course from the config file",
     }),
   };
 
@@ -72,7 +71,7 @@ export default class Learnit extends Command {
       name: "course",
       required: false,
       description:
-        "The name of the course to open in LearnIT. Supports fuzzy searching",
+        "the name of the course to open in LearnIT. Supports fuzzy searching",
     },
   ];
 
