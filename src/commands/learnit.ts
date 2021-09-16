@@ -60,6 +60,11 @@ export default class Learnit extends Command {
       exclusive: ["add"],
       description: "remove a course from the config list",
     }),
+    edit: flags.boolean({
+      char: "e",
+      exclusive: ["delete", "add"],
+      description: "edit a course from the config list",
+    }),
   };
 
   static args = [
@@ -98,6 +103,10 @@ export default class Learnit extends Command {
       return;
     }
 
+    if (flags.add) return addCourse();
+    if (flags.delete) return removeCourse();
+    if (flags.edit) return editCourse();
+
     if (flags.init || flags.reset) {
       if (hasConfigFile() && flags.init) {
         const confirmOverwrite = await cli.confirm(
@@ -133,52 +142,101 @@ export default class Learnit extends Command {
         }
       });
     }
-    if (flags.add) {
-      await inquirer
-        .prompt([
-          {
-            name: "name",
-            message: "Give the course a name:",
-            type: "input",
-          },
-          {
-            name: "id",
-            message: "Enter course id:",
-            type: "number",
-          },
-        ])
-        .then(function (course) {
-          const config = getConfig();
-          const { id, name } = course;
-          config[name] = id;
-          fs.writeFileSync(configFilePath, JSON.stringify(config));
-        });
-      return;
-    }
-    if (flags.delete) {
-      const config = getConfig();
-      await inquirer
-        .prompt([
-          {
-            type: "list",
-            name: "course",
-            message: "Which resource do you want to delete?",
-            choices: Object.keys(config),
-          },
-          {
-            type: "confirm",
-            name: "confirm",
-            message: "Confirm deletion?",
-          },
-        ])
-        .then(function (ans) {
-          if (ans.confirm) {
-            delete config[ans.course];
-            fs.writeFileSync(configFilePath, JSON.stringify(config));
-          }
-        });
-    }
   }
+}
+
+async function addCourse() {
+  await inquirer
+    .prompt([
+      {
+        name: "name",
+        message: "Give the course a name:",
+        type: "input",
+      },
+      {
+        name: "id",
+        message: "Enter course id:",
+        type: "number",
+      },
+    ])
+    .then(function (course) {
+      const config = getConfig();
+      const { id, name } = course;
+      config[name] = id;
+      fs.writeFileSync(configFilePath, JSON.stringify(config));
+      console.log("the course was successfully added 👌");
+    });
+  return;
+}
+
+async function editCourse() {
+  const config = getConfig();
+  await inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "course",
+        message: "Which course do you want to edit?",
+        choices: Object.keys(config),
+      },
+      {
+        type: "input",
+        name: "newName",
+        message: "Rename course? (leave blank to keep name):",
+      },
+      {
+        type: "input",
+        name: "newID",
+        message: "Change id? (leave blank to keep id)",
+        validate: function (answer) {
+          if (answer === "") return true;
+          const isInteger = Number.isInteger(Number.parseInt(answer, 10));
+          if (!isInteger) {
+            console.log(chalk.red("\nPlease enter a valid a number"));
+          }
+          return isInteger;
+        },
+      },
+      { type: "confirm", name: "confirm", message: "Confirm edit?" },
+    ])
+    .then(function (ans) {
+      if (ans.confirm) {
+        const id = ans.newID || config[ans.course];
+        config[ans.course] = Number.parseInt(id, 10);
+
+        if (ans.newName !== "") {
+          config[ans.newName] = config[ans.course];
+          delete config[ans.course];
+        }
+        fs.writeFileSync(configFilePath, JSON.stringify(config));
+        console.log("the course was successfully edited 👌");
+      }
+    });
+}
+
+async function removeCourse() {
+  const config = getConfig();
+  await inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "course",
+        message: "Which course do you want to delete?",
+        choices: Object.keys(config),
+      },
+      {
+        type: "confirm",
+        name: "confirm",
+        message: "Confirm deletion?",
+      },
+    ])
+    .then(function (ans) {
+      if (ans.confirm) {
+        delete config[ans.course];
+        fs.writeFileSync(configFilePath, JSON.stringify(config));
+        console.log("the course was successfully removed 👌");
+      }
+    });
 }
 
 function getCourseMatch(_course: string) {
