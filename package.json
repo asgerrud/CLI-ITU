@@ -1,6 +1,6 @@
 {
   "name": "cli-itu",
-  "description": "A CLI for all things ITU related",
+  "description": "A CLI for students at the IT University of Copenhagen",
   "version": "0.0.0-development",
   "author": "Asger Rud Hansen @AsgereDreemurr",
   "bin": {
@@ -59,7 +59,8 @@
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
-    "semantic-release": "semantic-release --branches main"
+    "semantic-release": "semantic-release --branches main",
+    "update-readme": "./node_modules/.bin/oclif-dev readme"
   },
   "types": "lib/index.d.ts",
   "dependencies": {
