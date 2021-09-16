@@ -166,7 +166,6 @@ async function addCourse() {
       fs.writeFileSync(configFilePath, JSON.stringify(config));
       console.log("the course was successfully added 👌");
     });
-  return;
 }
 
 async function editCourse() {
