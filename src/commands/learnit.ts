@@ -72,7 +72,7 @@ export default class Learnit extends Command {
       name: "course",
       required: false,
       description:
-        "The name of the course to open in LearnIT. The command uses fuzzy-search to find the course, meaning it is not necessary to enter the name letter for letter",
+        "The name of the course to open in LearnIT. Supports fuzzy searching",
     },
   ];
 
