@@ -162,7 +162,7 @@ DESCRIPTION
      generate config   $ itu learnit --init
      add a course      $ itu learnit --add
      edit a course     $ itu learnit --edit
-     remove a course   $ itu learnit --edit
+     delete a course   $ itu learnit --delete
 
      to find the course id:
      - open the LearnIT page
@@ -180,6 +180,7 @@ EXAMPLES
 
   $ itu learnit --init
   $ itu learnit --reset
+  $ itu learnit --delete
   $ itu learnit --add
 ```
 
