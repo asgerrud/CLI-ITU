@@ -21,7 +21,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development win32-x64 node-v14.17.6
+cli-itu/0.0.0-development linux-x64 node-v16.8.0
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -178,9 +178,9 @@ EXAMPLES
   $ itu learnit 'Applied Algorithms' 
   $ itu l discrete
 
-  $ itu learnit -init
-  $ itu learnit -reset
-  $ itu learnit -add
+  $ itu learnit --init
+  $ itu learnit --reset
+  $ itu learnit --add
 ```
 
 _See code: [src/commands/learnit.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/learnit.ts)_

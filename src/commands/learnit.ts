@@ -36,9 +36,9 @@ export default class Learnit extends Command {
     "$ itu learnit 'Applied Algorithms' ",
     "$ itu l discrete",
     "",
-    "$ itu learnit -init",
-    "$ itu learnit -reset",
-    "$ itu learnit -add",
+    "$ itu learnit --init",
+    "$ itu learnit --reset",
+    "$ itu learnit --add",
   ];
 
   static flags = {
