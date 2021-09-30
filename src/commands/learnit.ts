@@ -22,7 +22,7 @@ export default class Learnit extends Command {
   generate config   $ itu learnit --init
   add a course      $ itu learnit --add
   edit a course     $ itu learnit --edit
-  remove a course   $ itu learnit --edit
+  delete a course   $ itu learnit --delete
 
   to find the course id:
   - open the LearnIT page
@@ -38,6 +38,7 @@ export default class Learnit extends Command {
     "",
     "$ itu learnit --init",
     "$ itu learnit --reset",
+    "$ itu learnit --delete",
     "$ itu learnit --add",
   ];
 
