@@ -26,7 +26,7 @@ const openMenuPDF = () => {
       .load(html)("aside[aria-label='This weeks menu'] > a")
       .attr("href");
     const url = baseURL + menuFilePDF;
-    process.stdout.write("Opening ");
+    process.stdout.write("Opening latest uploaded lunch menu: ");
     cli.url("menu", url);
     cli.open(url);
   });
@@ -50,7 +50,7 @@ export default class Canteen extends Command {
   };
 
   static args = [
-    { name: "action", options: ["menu", "hours"], default: "menu" },
+    { name: "action", options: ["menu", "hours"], default: "menu", },
   ];
 
   async run(): Promise<void> {
