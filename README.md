@@ -1,12 +1,16 @@
 # CLI-ITU
 
-A command-line interface for all things ITU related. 
 
-This CLI currently allows you to:
+An command-line interface (CLI) for all things ITU related. 
+
+The CLI currently allows you to:
 - open ITU's platform (including individual LearnIT course pages)
 - canteen: see the menu and opening hours
-- wayfinding: find the location of every room, skybox, and facility
+- wayfinding: find the location of every room, skybox, and facility on Campus
 - Kattis commands (WIP)
+
+
+This project is open source. Any contributions by students, professors or other staff members at the IT University of Copenhagen are highly welcome.
 
 Powered by [OCLIF](https://oclif.io/)  
 <br>
