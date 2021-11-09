@@ -1,6 +1,19 @@
 # CLI-ITU
 
-A CLI for all things ITU related
+
+An command-line interface (CLI) for all things ITU related. 
+
+The CLI currently allows you to:
+- open ITU's platform (including individual LearnIT course pages)
+- canteen: see the menu and opening hours
+- wayfinding: find the location of every room, skybox, and facility on Campus
+- Kattis commands (WIP)
+
+
+This project is open source. Any contributions by students, professors or other staff members at the IT University of Copenhagen are highly welcome.
+
+Powered by [OCLIF](https://oclif.io/)  
+<br>
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/cli-itu.svg)](https://npmjs.org/package/cli-itu)
@@ -21,7 +34,7 @@ $ npm install -g cli-itu
 $ itu COMMAND
 running command...
 $ itu (-v|--version|version)
-cli-itu/0.0.0-development win32-x64 node-v14.17.6
+cli-itu/0.0.0-development linux-x64 node-v16.8.0
 $ itu --help [COMMAND]
 USAGE
   $ itu COMMAND
@@ -33,17 +46,18 @@ USAGE
 
 <!-- commands -->
 * [`itu canteen [ACTION]`](#itu-canteen-action)
+* [`itu commands`](#itu-commands)
 * [`itu feedback`](#itu-feedback)
 * [`itu help [COMMAND]`](#itu-help-command)
-* [`itu java FILENAME [MAINCLASS]`](#itu-java-filename-mainclass)
 * [`itu kattis ACTION PROBLEM_ID`](#itu-kattis-action-problem_id)
+* [`itu learnit [COURSE]`](#itu-learnit-course)
 * [`itu open PLATFORM`](#itu-open-platform)
-* [`itu test CLASSNAME [DIRECTORY]`](#itu-test-classname-directory)
-* [`itu where [ROOMNAME]`](#itu-where-roomname)
+* [`itu update [CHANNEL]`](#itu-update-channel)
+* [`itu where ROOMNAME`](#itu-where-roomname)
 
 ## `itu canteen [ACTION]`
 
-Get the menu and opening hours of ITU's canteen
+get the menu and opening hours of ITU's canteen
 
 ```
 USAGE
@@ -58,9 +72,33 @@ ALIASES
 
 _See code: [src/commands/canteen.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/canteen.ts)_
 
+## `itu commands`
+
+list all the commands
+
+```
+USAGE
+  $ itu commands
+
+OPTIONS
+  -h, --help              show CLI help
+  -j, --json              display unfiltered api data in json format
+  -x, --extended          show extra columns
+  --columns=columns       only show provided columns (comma-separated)
+  --csv                   output is csv format [alias: --output=csv]
+  --filter=filter         filter property by partial string matching, ex: name=foo
+  --hidden                show hidden commands
+  --no-header             hide table header from output
+  --no-truncate           do not truncate output to fit screen
+  --output=csv|json|yaml  output in a more machine friendly format
+  --sort=sort             property to sort by (prepend '-' for descending)
+```
+
+_See code: [@oclif/plugin-commands](https://github.com/oclif/plugin-commands/blob/v1.3.0/src/commands/commands.ts)_
+
 ## `itu feedback`
 
-Report a bug or suggest an issue to improve the CLI. 
+report a bug or suggest an issue to improve the CLI. 
 
 ```
 USAGE
@@ -68,7 +106,7 @@ USAGE
 
 OPTIONS
   -h, --help      show CLI help
-  -n, --noprompt  Turns off the issue prompt. Instead opens the issues page for the CLI
+  -n, --noprompt  turn off the issue prompt and open the issues page for the CLI instead
 
 DESCRIPTION
   Requires Github CLI installed to create the issue. To manually submit, use the --noprompt flag.
@@ -93,35 +131,6 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.3/src/commands/help.ts)_
 
-## `itu java FILENAME [MAINCLASS]`
-
-run the specified Java program.
-
-```
-USAGE
-  $ itu java FILENAME [MAINCLASS]
-
-ARGUMENTS
-  FILENAME   The name of the Java file
-
-  MAINCLASS  Specify the main class.
-             Leave blank, if the main class has the same name as the .java file
-
-OPTIONS
-  -d, --dir=dir      Define the directory of the java file
-  -h, --help         show CLI help
-  -i, --input=input  Input file to redirect
-  -n, --nocompile    Run the program without compiling the file first
-  -t, --time         Measure the time to execute the program
-
-EXAMPLES
-  $ itu java MyClass.java
-  $ itu java DisjointSets.java -n -t
-  $ itu java MyClass.java AnotherClass -i='./input/1.in'
-```
-
-_See code: [src/commands/java.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/java.ts)_
-
 ## `itu kattis ACTION PROBLEM_ID`
 
 fetch: downloads sample data files to directory. WARNING: the program will overwrite existing data files of the same name.
@@ -139,6 +148,56 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/kattis.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/kattis.ts)_
+
+## `itu learnit [COURSE]`
+
+open a course's LearnIT page directly from your terminal.
+
+```
+USAGE
+  $ itu learnit [COURSE]
+
+ARGUMENTS
+  COURSE  the name of the course to open in LearnIT. Supports fuzzy searching
+
+OPTIONS
+  -a, --add     add a course to the config file
+  -d, --delete  remove a course from the config file
+  -e, --edit    edit a course from the config file
+  -h, --help    show CLI help
+  -i, --init    initialize the config file
+  -r, --reset   reset the config file
+
+DESCRIPTION
+  CONFIG
+     for a course page to be openable, it must first be added to the config file.
+
+     generate config   $ itu learnit --init
+     add a course      $ itu learnit --add
+     edit a course     $ itu learnit --edit
+     delete a course   $ itu learnit --delete
+
+     to find the course id:
+     - open the LearnIT page
+     - locate the number in the end of the URL
+
+     Example: https://learnit.itu.dk/course/view.php?id=3020335 -> 3020335
+
+ALIASES
+  $ itu l
+
+EXAMPLES
+  $ itu learnit security
+  $ itu learnit 'Applied Algorithms' 
+  $ itu l discrete
+
+  $ itu learnit --init
+  $ itu learnit --reset
+  $ itu learnit --delete
+  $ itu learnit --add
+```
+
+_See code: [src/commands/learnit.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/learnit.ts)_
 
 ## `itu open PLATFORM`
 
@@ -164,35 +223,31 @@ EXAMPLES
 
 _See code: [src/commands/open.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/open.ts)_
 
-## `itu test CLASSNAME [DIRECTORY]`
+## `itu update [CHANNEL]`
 
-test your Java program against a series of sample data files
+update the itu CLI
 
 ```
 USAGE
-  $ itu test CLASSNAME [DIRECTORY]
-
-ARGUMENTS
-  CLASSNAME
-  DIRECTORY  The directory containing the input (.in) and answer (.ans) files
+  $ itu update [CHANNEL]
 
 OPTIONS
-  -h, --help  show CLI help
+  --from-local  interactively choose an already installed version
 ```
 
-_See code: [src/commands/test.ts](https://github.com/AsgereDreemurr/CLI-ITU/blob/v0.0.0-development/src/commands/test.ts)_
+_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v1.5.0/src/commands/update.ts)_
 
-## `itu where [ROOMNAME]`
+## `itu where ROOMNAME`
 
-Find the location of auditoriums, labs, departments and class rooms - on the first try
+find the location of auditoriums, labs, departments and class rooms - on the first try
 
 ```
 USAGE
-  $ itu where [ROOMNAME]
+  $ itu where ROOMNAME
 
 ARGUMENTS
   ROOMNAME
-      The following arguments are accepted: 
+      the following arguments are accepted: 
       Auditoriums: (AUD0|AUD1|AUD2|AUD3|AUD4) 
       Departments: (SAP|studentadvisors|IT|analog|scrollbar|canteen) 
       Labs: (AIR|BUILD|ETHOS|IXD) 

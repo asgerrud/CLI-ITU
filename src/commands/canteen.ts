@@ -23,7 +23,8 @@ const openMenuPDF = () => {
   fetch(canteenPageURL).then((html: any) => {
     const menuFilePDF = cheerio.load(html)(".canteen > img:last-of-type").attr("src");
     const url = baseURL + menuFilePDF;
-    process.stdout.write("Opening latest menu");
+    process.stdout.write("Opening latest uploaded lunch menu: ");
+    cli.url("menu", url);
     cli.open(url);
   });
 };
@@ -31,7 +32,8 @@ const openMenuPDF = () => {
 const printOpeningHours = () => {
   console.log(chalk.cyan("----------------------"));
   console.log(chalk.cyan("Canteen opening hours"));
-  console.log(chalk.cyan("Mon-Fri: 07:45 - 15:00"));
+  console.log(chalk.cyan("Mon-Thu: 07:45 - 18:00"));
+  console.log(chalk.cyan("Fri:     07:45 - 16:00"));
   console.log(chalk.cyan("Lunch:   11:15 - 14:00"));
   console.log(chalk.cyan("----------------------"));
 };
@@ -39,7 +41,7 @@ const printOpeningHours = () => {
 export default class Canteen extends Command {
   static aliases = ["lunch"];
 
-  static description = "Get the menu and opening hours of ITU's canteen";
+  static description = "get the menu and opening hours of ITU's canteen";
 
   static flags = {
     help: flags.help({ char: "h" }),
