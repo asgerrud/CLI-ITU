@@ -5,9 +5,8 @@ import * as cheerio from "cheerio";
 import cli from "cli-ux";
 import chalk = require("chalk");
 
-const baseURL = "https://itustudent.itu.dk/Campus-Life/Student-Life/";
-const canteenPageURL =
-  "https://itustudent.itu.dk/Campus-Life/Student-Life/Canteen";
+const baseURL = "https://billboard.itu.dk/";
+const canteenPageURL = "https://billboard.itu.dk/canteen-menu";
 
 const fetch = (url: any) =>
   new Promise((resolve, reject) => {
@@ -22,12 +21,9 @@ const fetch = (url: any) =>
 
 const openMenuPDF = () => {
   fetch(canteenPageURL).then((html: any) => {
-    const menuFilePDF = cheerio
-      .load(html)("aside[aria-label='This weeks menu'] > a")
-      .attr("href");
+    const menuFilePDF = cheerio.load(html)(".canteen > img:last-of-type").attr("src");
     const url = baseURL + menuFilePDF;
-    process.stdout.write("Opening ");
-    cli.url("menu", url);
+    process.stdout.write("Opening latest menu");
     cli.open(url);
   });
 };
@@ -50,7 +46,14 @@ export default class Canteen extends Command {
   };
 
   static args = [
-    { name: "action", options: ["menu", "hours"], default: "menu" },
+    {
+      name: "action",
+      options: ["menu", "hours"],
+      default: "menu",
+      description: `
+      menu:  fetches the most recently uploaded lunch menu (not always up-to-date)
+      hours: get the opening hours`,
+    },
   ];
 
   async run(): Promise<void> {
