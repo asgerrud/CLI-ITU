@@ -5,9 +5,8 @@ import * as cheerio from "cheerio";
 import cli from "cli-ux";
 import chalk = require("chalk");
 
-const baseURL = "https://itustudent.itu.dk/Campus-Life/Student-Life/";
-const canteenPageURL =
-  "https://itustudent.itu.dk/Campus-Life/Student-Life/Canteen";
+const baseURL = "https://billboard.itu.dk/";
+const canteenPageURL = "https://billboard.itu.dk/canteen-menu";
 
 const fetch = (url: any) =>
   new Promise((resolve, reject) => {
@@ -22,9 +21,7 @@ const fetch = (url: any) =>
 
 const openMenuPDF = () => {
   fetch(canteenPageURL).then((html: any) => {
-    const menuFilePDF = cheerio
-      .load(html)("aside[aria-label='This weeks menu'] > a")
-      .attr("href");
+    const menuFilePDF = cheerio.load(html)(".canteen > img:last-of-type").attr("src");
     const url = baseURL + menuFilePDF;
     process.stdout.write("Opening latest uploaded lunch menu: ");
     cli.url("menu", url);
@@ -35,7 +32,8 @@ const openMenuPDF = () => {
 const printOpeningHours = () => {
   console.log(chalk.cyan("----------------------"));
   console.log(chalk.cyan("Canteen opening hours"));
-  console.log(chalk.cyan("Mon-Fri: 07:45 - 15:00"));
+  console.log(chalk.cyan("Mon-Thu: 07:45 - 18:00"));
+  console.log(chalk.cyan("Fri:     07:45 - 16:00"));
   console.log(chalk.cyan("Lunch:   11:15 - 14:00"));
   console.log(chalk.cyan("----------------------"));
 };
@@ -50,7 +48,14 @@ export default class Canteen extends Command {
   };
 
   static args = [
-    { name: "action", options: ["menu", "hours"], default: "menu", },
+    {
+      name: "action",
+      options: ["menu", "hours"],
+      default: "menu",
+      description: `
+      menu:  fetches the most recently uploaded lunch menu (not always up-to-date)
+      hours: get the opening hours`,
+    },
   ];
 
   async run(): Promise<void> {
