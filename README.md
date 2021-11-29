@@ -10,7 +10,7 @@ The CLI currently allows you to:
 - Kattis commands (WIP)
 
 
-This project is open source. Any contributions by students, professors or other staff members at the IT University of Copenhagen are highly welcome.
+This project is open source. Any contributions by students, professors or other staff members at the IT University of Copenhagen are highly welcome. Each accepted contribution grants you a free beverage at cafe [Analog](https://cafeanalog.dk/) ☕🍵
 
 Powered by [OCLIF](https://oclif.io/)  
 <br>
